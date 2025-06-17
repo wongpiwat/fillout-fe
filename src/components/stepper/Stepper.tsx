@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   closestCenter,
   DndContext,
@@ -28,13 +28,26 @@ import StepItem from "./StepItem";
 
 const Stepper = () => {
   const [activeId, setActiveId] = useState<string | null>(null);
-  const { steps, setSteps, addStep } = useStepStore();
+  const { steps, setSteps, addStep, setSelectedStep } = useStepStore();
+
+  const scrollingRef = useRef<HTMLDivElement>(null);
 
   const handleAddStep = (index: number) => {
-    addStep({
+    const newStep = addStep({
       index: index,
       label: `New Page`,
     });
+
+    setSelectedStep(newStep.id);
+
+    setTimeout(() => {
+      if (scrollingRef.current) {
+        scrollingRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 0);
   };
 
   const sensors = useSensors(
@@ -75,6 +88,7 @@ const Stepper = () => {
     >
       <SortableContext items={steps} strategy={horizontalListSortingStrategy}>
         {steps.map((step, index) => (
+          // Use StepItem component to render each step
           <StepItem
             key={step.id}
             id={step.id}
@@ -83,16 +97,21 @@ const Stepper = () => {
             isLastItem={index === steps.length - 1}
           />
         ))}
+
+        {/* Add page button */}
         <div
-          className="flex flex-row gap-2 border-gray-300 bg-white items-center p-2 w-fit text-sm font-medium rounded-lg border"
+          ref={scrollingRef}
+          className="flex flex-row gap-2 border-gray-border items-center p-2 w-fit text-sm font-medium rounded-lg border"
           onClick={() => handleAddStep(steps.length + 1)}
         >
           <DynamicIcon name="plus" size={18} strokeWidth={2} />
-          <label className="whitespace-nowrap">Add page</label>
+          <label className="font-semibold whitespace-nowrap">Add page</label>
         </div>
       </SortableContext>
+
       <DragOverlay>
         {activeId && (
+          // Render the active step being dragged as an overlay
           <StepItem
             id={activeId}
             index={steps.findIndex((page) => page.id === activeId)}

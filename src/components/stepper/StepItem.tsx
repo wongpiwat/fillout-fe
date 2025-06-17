@@ -43,10 +43,12 @@ const StepItem = ({
   const isFocused = step.isSelected;
 
   const handleAddStep = () => {
-    addStep({
+    const newStep = addStep({
       index: index + 1,
       label: `New Page`,
     });
+
+    setSelectedStep(newStep.id);
   };
 
   const handleContextMenuOpen = () => {
@@ -60,18 +62,22 @@ const StepItem = ({
   return (
     <div
       ref={setNodeRef}
-      style={{
-        ...style,
-      }}
+      style={
+        {
+          ...style,
+          anchorName: isFocused ? "--active-step-item" : undefined,
+        } as React.CSSProperties
+      }
       className={`flex items-center cursor-pointer`}
     >
+      {/* Step Item */}
       <div
         ref={setActivatorNodeRef}
         {...attributes}
         {...listeners}
         className={`flex items-center p-2 text-sm font-medium rounded-lg border  
-            ${isDragging ? "bg-transparent text-transparent border border-dashed border-blue-500 rounded-lg" : "pointer-none"}
-            ${isFocused ? "border-blue-500 text-black bg-white" : "text-gray-700 border-gray-300 bg-gray-100"}
+            ${isDragging ? "bg-transparent text-transparent border border-dashed border-step-focus-border rounded-lg" : "pointer-none"}
+            ${isFocused ? "bg-step-active-background border-step-focus-border text-primary" : "bg-step-default-background border-gray-border text-secondary"}
             ${isOverlay ? "shadow-md" : ""}
           `}
         onClick={() => setSelectedStep(step.id)}
@@ -80,25 +86,26 @@ const StepItem = ({
           name={step.icon}
           size={18}
           strokeWidth={2}
-          className={`mr-1 ${isFocused ? "text-amber-300" : "text-gray-600"} ${isDragging ? "text-transparent" : ""}`}
+          className={`mr-1 ${isFocused ? "text-orange-icon-background" : "text-gray-icon-background"} ${isDragging ? "text-transparent" : ""}`}
         />
-        <label className="px-2 outline-none truncate cursor-pointer">
+        <label className="font-semibold truncate cursor-pointer px-2">
           {step.label}
         </label>
         {isFocused && (
-          <button
-            onClick={handleContextMenuOpen}
-            className="ml-1 w-4 h-full flex items-center justify-center hover:text-blue-500"
-          >
+          <button onClick={handleContextMenuOpen} className="flex w-4">
             <DynamicIcon name="ellipsis-vertical" size={16} strokeWidth={2} />
           </button>
         )}
       </div>
+
+      {/* Dashed line */}
       <DashedLine
         isLastItem={isLastItem}
         isOverlay={isOverlay}
         onAddStep={handleAddStep}
       />
+
+      {/* Context menu */}
       <StepContextMenu
         id={step.id}
         open={openContextMenu}
