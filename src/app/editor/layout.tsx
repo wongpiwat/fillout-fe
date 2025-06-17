@@ -30,7 +30,7 @@ export default function RootLayout({
         <HeaderBar />
         <div
           className="flex w-full items-start justify-start flex-col"
-          style={{ height: "calc(-58px + 100vh)" }}
+          style={{ height: "calc(100vh - 58px)" }}
         >
           {children}
         </div>
