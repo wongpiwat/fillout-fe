@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import HeaderBar from "@/components/header/HeaderBar";
 import { DynamicIcon } from "lucide-react/dynamic";
+
+import HeaderBar from "@/components/header/HeaderBar";
 
 export default function RootLayout({
   children,
@@ -16,7 +17,7 @@ export default function RootLayout({
           <div className="flex justify-center items-center mb-2">
             <DynamicIcon name="monitor" color="gray" size={32} />
           </div>
-          <p className="text-gray-700 text-2xl font-bold">
+          <p className="text-gray-700 text-2xl font-semibold">
             The Fillout editor works best on larger screens
           </p>
           <p className="text-gray-500 text-base">

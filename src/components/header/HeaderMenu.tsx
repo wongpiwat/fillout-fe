@@ -16,8 +16,8 @@ export default function HeaderMenu({
       href={href}
       className={
         selected
-          ? "bg-[#E4EFFE] text-blue-500 hover:text-blue-500 px-3 py-[7px] font-bold text-sm rounded-md"
-          : "text-gray-500 hover:text-gray-700 hover:bg-gray-100 px-3 py-[7px] font-bold text-sm rounded-md"
+          ? "bg-header-menu-active-background text-header-menu-active-text px-3 py-2 font-semibold text-sm rounded-md"
+          : "text-header-menu-default-text hover:text-header-menu-hover-text hover:bg-header-menu-hover-background px-3 py-2 font-semibold text-sm rounded-md"
       }
     >
       {children}

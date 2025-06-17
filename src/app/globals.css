@@ -4,6 +4,11 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .context-menu {
+    position-anchor: --active-step-item;
+    left: anchor(left);
+  }
 }
 
 :root {
@@ -16,6 +21,52 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  /* Text */
+  --color-primary: #1A1A1A;
+  --color-secondary: #677289;
+  --color-red-default: #EF494F;
+
+  /* Icon */
+  --color-gray-icon-background: #9DA4B2;
+  --color-blue-icon-background: #2F72E2;
+  --color-red-icon-background: #EF494F;
+  --color-orange-icon-background: #F59D0E;
+
+  /* Border */
+  --color-gray-border: var(--color-gray-300);
+
+  /* Header */
+  --color-header-background: var(--color-gray-50);
+  --color-header-menu-default-background: var(--color-gray-50);
+  --color-header-menu-hover-background: var(--color-gray-100);
+  --color-header-menu-active-background: #E4EFFE;
+  --color-header-menu-active-text: var(--color-blue-500);
+  --color-header-menu-default-text: var(--color-gray-500);
+  --color-header-menu-hover-text: var(--color-gray-700);
+
+  /* Sidebar */
+  --color-sidebar-background: var(--color-gray-50);
+  --color-icon-sidebar-background: var(--color-gray-50);
+
+  /* Editor */
+  --color-editor-background: #FFFFFF;
+  --color-form-editor-background: #14213D;
+
+  /* Context Menu */
+  --color-context-menu-header-background: #FAFBFC;
+  --color-context-menu-background: #FFFFFF;
+  --color-context-menu-hover-background: #9DA4B24D;
+
+  /* Step */
+  --color-step-default-background: #9DA4B226;
+  --color-step-hover-background: #9DA4B24D;
+  --color-step-active-background: #FFFFFF;
+  --color-step-default-text: #677289;
+  --color-step-default-border: #E1E1E1;
+  --color-step-focus-border: #2F72E2;
 }
 
 @media (prefers-color-scheme: dark) {
