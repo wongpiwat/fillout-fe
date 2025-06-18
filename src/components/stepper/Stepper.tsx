@@ -20,12 +20,11 @@ import {
   restrictToHorizontalAxis,
   restrictToWindowEdges,
 } from "@dnd-kit/modifiers";
-import { DynamicIcon } from "lucide-react/dynamic";
 
 import useStepStore from "@/stores/useStepStore";
 
 import StepItem from "./StepItem";
-import StepAddButton from "@/components/stepper/StepAddButton";
+import StepAddButton from "./StepAddButton";
 
 const Stepper = () => {
   const [activeId, setActiveId] = useState<string | null>(null);
