@@ -97,7 +97,7 @@ const StepContextMenu = ({ id, open, onClose }: StepContextMenuProps) => {
               Duplicate
             </button>
           </li>
-          <div id="separator" className="border-t border-gray-border my-1" />
+          <li id="separator" className="border-t border-gray-border my-1" />
           <li>
             <button
               className="flex gap-2 w-full text-left text-red-icon-background hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
