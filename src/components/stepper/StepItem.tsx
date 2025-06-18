@@ -5,7 +5,9 @@ import { DynamicIcon } from "lucide-react/dynamic";
 
 import { type Step } from "@/types/step";
 import useStepStore from "@/stores/useStepStore";
-import StepContextMenu from "@/components/stepper/StepContextMenu";
+
+import StepContextMenu from "./StepContextMenu";
+import StepDashedLine from "./StepDashedLine";
 
 interface StepItemProps {
   id: string;
@@ -75,11 +77,10 @@ const StepItem = ({
         ref={setActivatorNodeRef}
         {...attributes}
         {...listeners}
-        className={`flex items-center p-2 text-sm font-medium rounded-lg border  
-            ${isDragging ? "bg-transparent text-transparent border border-dashed border-step-focus-border rounded-lg" : "pointer-none"}
-            ${isFocused ? "bg-step-active-background border-step-focus-border text-primary" : "bg-step-default-background border-gray-border text-secondary"}
-            ${isOverlay ? "shadow-md" : ""}
-          `}
+        className={`flex flex-row items-center border border-gray-border hover:border-step-focus-border focus:border-step-focus-border text-sm font-medium rounded-lg p-2 
+        ${isDragging ? "bg-transparent text-transparent border-dashed rounded-lg" : ""}
+        ${isFocused ? "bg-step-active-background text-primary" : "bg-step-default-background text-secondary"}
+        `}
         onClick={() => setSelectedStep(step.id)}
       >
         <DynamicIcon
@@ -93,13 +94,18 @@ const StepItem = ({
         </label>
         {isFocused && (
           <button onClick={handleContextMenuOpen} className="flex w-4">
-            <DynamicIcon name="ellipsis-vertical" size={16} strokeWidth={2} />
+            <DynamicIcon
+              className={`text-secondary ${isDragging ? "text-transparent" : ""}`}
+              name="ellipsis-vertical"
+              size={16}
+              strokeWidth={2}
+            />
           </button>
         )}
       </div>
 
       {/* Dashed line */}
-      <DashedLine
+      <StepDashedLine
         isLastItem={isLastItem}
         isOverlay={isOverlay}
         onAddStep={handleAddStep}
@@ -111,40 +117,6 @@ const StepItem = ({
         open={openContextMenu}
         onClose={handleContextMenuClose}
       />
-    </div>
-  );
-};
-
-interface DashedLineProps {
-  isLastItem?: boolean;
-  isOverlay?: boolean;
-  isDragging?: boolean;
-  onAddStep?: () => void;
-}
-
-const DashedLine = ({ isLastItem, isOverlay, onAddStep }: DashedLineProps) => {
-  const disabled = isLastItem;
-
-  return (
-    <div
-      className={`relative flex  justify-center items-center w-5
-        ${isOverlay ? "pointer-none" : "after:absolute after:w-full after:border-t after:border-dashed after:border-gray-400"}
-        ${disabled ? "pointer-events-none" : "w-12"}
-        `}
-    >
-      {!disabled && (
-        <button
-          onClick={onAddStep}
-          className="relative z-10 h-4 w-4 rounded-full border border-gray-400 bg-white text-black flex items-center justify-center opacity-0 hover:opacity-100 hover:h-6 hover:w-6 transition-all duration-200"
-        >
-          <DynamicIcon
-            name="plus"
-            size={8}
-            strokeWidth={3}
-            className="transition-all w-4 h-4"
-          />
-        </button>
-      )}
     </div>
   );
 };

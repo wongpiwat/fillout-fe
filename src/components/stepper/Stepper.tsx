@@ -25,6 +25,7 @@ import { DynamicIcon } from "lucide-react/dynamic";
 import useStepStore from "@/stores/useStepStore";
 
 import StepItem from "./StepItem";
+import StepAddButton from "@/components/stepper/StepAddButton";
 
 const Stepper = () => {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -99,14 +100,10 @@ const Stepper = () => {
         ))}
 
         {/* Add page button */}
-        <div
+        <StepAddButton
           ref={scrollingRef}
-          className="flex flex-row gap-2 border-gray-border items-center p-2 w-fit text-sm font-medium rounded-lg border"
           onClick={() => handleAddStep(steps.length)}
-        >
-          <DynamicIcon name="plus" size={18} strokeWidth={2} />
-          <label className="font-semibold whitespace-nowrap">Add page</label>
-        </div>
+        />
       </SortableContext>
 
       <DragOverlay>

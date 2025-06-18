@@ -35,7 +35,7 @@ const StepContextMenu = ({ id, open, onClose }: StepContextMenuProps) => {
     <div className="context-menu fixed cursor-default">
       <div
         ref={menuRef}
-        className="absolute bottom-full origin-bottom-right rounded-md bg-context-menu-background shadow-lg border border-gray-border mb-8 w-40 z-50"
+        className="absolute bottom-full origin-bottom-right rounded-md bg-context-menu-background shadow-lg border border-gray-border mb-8 w-56 z-50"
       >
         <div className="text-primary font-semibold border-b border-gray-border px-4 py-2">
           Settings
@@ -43,7 +43,7 @@ const StepContextMenu = ({ id, open, onClose }: StepContextMenuProps) => {
         <ul className="text-primary text-sm py-1">
           <li>
             <button
-              className="flex gap-2 w-full text-left hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
+              className="flex gap-2 w-full font-semibold text-left hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
               onClick={() => console.log("Set as first page")}
             >
               <DynamicIcon
@@ -57,7 +57,7 @@ const StepContextMenu = ({ id, open, onClose }: StepContextMenuProps) => {
           </li>
           <li>
             <button
-              className="flex gap-2 w-full text-left hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
+              className="flex gap-2 w-full font-semibold text-left hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
               onClick={() => console.log("Rename")}
             >
               <DynamicIcon
@@ -71,7 +71,7 @@ const StepContextMenu = ({ id, open, onClose }: StepContextMenuProps) => {
           </li>
           <li>
             <button
-              className="flex gap-2 w-full text-left hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
+              className="flex gap-2 w-full font-semibold text-left hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
               onClick={() => console.log("Copy")}
             >
               <DynamicIcon
@@ -85,7 +85,7 @@ const StepContextMenu = ({ id, open, onClose }: StepContextMenuProps) => {
           </li>
           <li>
             <button
-              className="flex gap-2 w-full text-left hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
+              className="flex gap-2 w-full font-semibold text-left hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
               onClick={() => console.log("Duplicate")}
             >
               <DynamicIcon
@@ -100,7 +100,7 @@ const StepContextMenu = ({ id, open, onClose }: StepContextMenuProps) => {
           <li id="separator" className="border-t border-gray-border my-1" />
           <li>
             <button
-              className="flex gap-2 w-full text-left text-red-icon-background hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
+              className="flex gap-2 w-full font-semibold text-left text-red-icon-background hover:bg-context-menu-hover-background cursor-pointer px-4 py-2"
               onClick={() => {
                 console.log("Delete");
                 handleRemoveStep();
