@@ -6,19 +6,15 @@ import { STEPS } from "@/constants/steps";
 
 interface StepStore {
   steps: Step[];
-  getSelectedStep: () => Step | null;
   setSteps: (steps: Step[]) => void;
   setSelectedStep: (id: string) => void;
-  addStep: ({ index, label }: { index: number; label: string }) => void;
+  getSelectedStep: () => Step | null;
+  addStep: ({ index, label }: { index: number; label: string }) => Step;
   removeStep: (id: string) => void;
 }
 
 const useStepStore = create<StepStore>((set, get) => ({
   steps: STEPS,
-  getSelectedStep: () => {
-    const { steps } = get();
-    return steps.find((step) => step.isSelected) || null;
-  },
   setSteps: (steps: Step[]) => set({ steps }),
   setSelectedStep: (id: string) =>
     set((state) => ({
@@ -28,14 +24,19 @@ const useStepStore = create<StepStore>((set, get) => ({
           : { ...step, isSelected: false },
       ),
     })),
-  addStep: ({ index, label }: { index: number; label: string }) =>
+  getSelectedStep: () => {
+    const { steps } = get();
+    return steps.find((step) => step.isSelected) || null;
+  },
+  addStep: ({ index, label }: { index: number; label: string }) => {
+    const newStep: Step = {
+      id: uuid(),
+      label: label,
+      icon: "file-text",
+      isSelected: false,
+    };
+
     set((state) => {
-      const newStep: Step = {
-        id: uuid(),
-        label: label,
-        icon: "file-text",
-        isSelected: false,
-      };
       if (index >= 0 && index < state.steps.length) {
         return {
           steps: [
@@ -46,7 +47,10 @@ const useStepStore = create<StepStore>((set, get) => ({
         };
       }
       return { steps: [...state.steps, newStep] };
-    }),
+    });
+
+    return newStep;
+  },
   removeStep: (id: string) =>
     set((state) => ({
       steps: state.steps.filter((step) => step.id !== id),

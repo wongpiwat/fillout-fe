@@ -10,14 +10,14 @@ interface WidgetItemProps {
 const WidgetItem = ({ label, icon, onClick }: WidgetItemProps) => {
   return (
     <Button
-      className="bg-white flex flex-col items-center  rounded-md cursor-pointer  border border-white shadow hover:shadow-md hover:shadow-gray-400/50"
+      className="flex flex-col items-center bg-white border border-white rounded-md cursor-pointer shadow hover:shadow-md hover:shadow-gray-400/50"
       onClick={onClick}
     >
-      <div className="flex flex-col items-center justify-center gap-2 p-2 rounded-lg">
-        <div className="p-1 rounded bg-gray-50 border-[0.5px]">
+      <div className="flex flex-col items-center justify-center gap-2 p-2 rounded-md">
+        <div className="bg-icon-sidebar-background border-gray-border border-[0.5px] p-1 rounded-lg">
           <DynamicIcon name={icon} color="gray" size={20} />
         </div>
-        <p className="text-gray-700 text-xs font-bold leading-3">{label}</p>
+        <p className="text-primary text-xs font-semibold leading-3">{label}</p>
       </div>
     </Button>
   );

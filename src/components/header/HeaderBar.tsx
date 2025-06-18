@@ -15,14 +15,14 @@ export default function HeaderBar() {
   return (
     <header
       id="editor-header-bar"
-      className="bg-gray-50 border-b-1 border-gray-300 flex-shrink-0"
+      className="bg-header-background border-b-[0.5] border-gray-border"
     >
       <nav
         aria-label="editor-header-bar"
-        className="mx-auto flex items-center justify-between p-2 px-8"
+        className="flex items-center justify-between p-2 px-8 mx-auto"
       >
         <div className="flex flex-1">
-          <a href="#" className="-m-2 p-2">
+          <a href="#" className="p-2 -m-2">
             <span className="sr-only">Fillout</span>
             <DynamicIcon name="house" color="gray" size={20} />
           </a>
